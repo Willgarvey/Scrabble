@@ -10,13 +10,13 @@ public class ScrabbleBoardGenerator : MonoBehaviour
     public GameManager GameManager;
 
     // Colors for special tiles
-    public Color defaultColor = Color.white;
-    public Color doubleLetterColor = Color.blue;
-    public Color tripleLetterColor = Color.red;
-    public Color doubleWordColor = Color.magenta;
-    public Color tripleWordColor = Color.yellow;
-    public Color centerStarColor = Color.green;
-    public Color gridLineColor = Color.black; // Color of the grid lines
+    public Color defaultColor = new Color(214, 197, 157);
+    public Color doubleLetterColor = new Color(2, 146,246);
+    public Color tripleLetterColor = new Color(38, 85, 218);
+    public Color doubleWordColor = new Color(204, 117, 157);
+    public Color tripleWordColor = new Color(220, 68, 72);
+    public Color centerStarColor = new Color(204, 117, 157);
+    public Color gridLineColor = new Color(73, 76, 80);
 
     // Special tiles map
     private int[,] specialTiles = new int[15, 15]

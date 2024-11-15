@@ -204,7 +204,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0, g: 0, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -229,7 +229,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -653,11 +653,11 @@ MonoBehaviour:
   boardParent: {fileID: 2119806299}
   GameManager: {fileID: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  doubleLetterColor: {r: 0, g: 0, b: 1, a: 1}
-  tripleLetterColor: {r: 1, g: 0, b: 0, a: 1}
-  doubleWordColor: {r: 1, g: 0, b: 1, a: 1}
-  tripleWordColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  centerStarColor: {r: 0, g: 1, b: 0, a: 1}
+  doubleLetterColor: {r: 0.007843138, g: 0.57254905, b: 0.9647059, a: 1}
+  tripleLetterColor: {r: 0.14901961, g: 0.33333334, b: 0.85490197, a: 1}
+  doubleWordColor: {r: 0.8, g: 0.45882353, b: 0.6156863, a: 1}
+  tripleWordColor: {r: 0.8627451, g: 0.26666668, b: 0.28235295, a: 1}
+  centerStarColor: {r: 0, g: 0.8, b: 0.45882353, a: 0.6156863}
   gridLineColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &1375301241
 Transform:

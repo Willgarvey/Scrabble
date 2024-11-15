@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoardGenerator : MonoBehaviour
 {
     public GameObject tilePrefab; // Assign a simple square prefab here
     public LineRenderer linePrefab; // Assign a LineRenderer prefab for the grid lines
     public Vector2 tileSize = new Vector2(1, 1); // Adjust based on your prefab size
-    public Transform boardParent; // Assign an empty GameObject as the parent
+    public Transform boardParent; // Assign an empty GameObject as the parent for the board
     public Transform PlayerRackParent; // Empty GameObject for the tile rack
 
     public GameManager GameManager;
@@ -39,6 +40,13 @@ public class BoardGenerator : MonoBehaviour
         {4, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 4}
     };
 
+    // Scoreboard UI elements
+    public GameObject scoreboardParent; // Parent object for the scoreboard
+    public Text scoreText; // Text to display player scores
+    public Text currentPlayerText; // Text to display current player's name
+    public Button menuButton; // Menu button in the scoreboard
+    public Canvas canvas; // Reference to Canvas for the UI
+
     void Start()
     {
         GenerateBoard();
@@ -59,7 +67,7 @@ public class BoardGenerator : MonoBehaviour
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, boardParent);
 
                 // Assign a name and color to the tile
-                tile.name = $"Tile_{row}_{col}";
+                tile.name = $"Position_{row}_{col}";
                 Renderer tileRenderer = tile.GetComponent<Renderer>();
                 tileRenderer.material.color = GetTileColor(specialTiles[row, col]);
             }

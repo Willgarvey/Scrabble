@@ -6,21 +6,12 @@ public class GameManager : MonoBehaviour
     public GameObject playerRackPrefab; // PlayerRack prefab (the tile on the player rack)
     public Vector2 tileSize = new Vector2(1, 1); // Tile size in units
     public int boardSize = 15; // Scrabble board size (15x15)
-    public GameObject pointerPrefab;  // Pointer prefab (a simple sphere or custom object)
     public Transform boardParent;     // The parent of the board (used to calculate position)
 
-    // Number of test tiles to place randomly
-    public int numberOfTestTiles = 5;
-
-    private GameObject pointer;  // Instance of the pointer
     private GameObject selectedPlayerRack = null; // Currently selected player rack (yellow one)
 
     void Start()
     {
-        // Instantiate the pointer object and set it inactive initially
-        pointer = Instantiate(pointerPrefab);
-        pointer.SetActive(true);  // Set active when ready
-
         // Instantiate a player rack for demonstration purposes (You may already have this in your UI)
         selectedPlayerRack = Instantiate(playerRackPrefab);
         Renderer rackRenderer = selectedPlayerRack.GetComponent<Renderer>();
@@ -30,7 +21,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Place some random test tiles
-        PlaceRandomTestTiles(numberOfTestTiles);
+        PlaceRandomTestTiles(10);
     }
 
     void Update()
@@ -162,8 +153,8 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            // Check if the hit object's name starts with "Tile_"
-            else if (clickedObject.name.StartsWith("Tile_"))
+            // Check if the hit object's name starts with "Position_"
+            else if (clickedObject.name.StartsWith("Position_"))
             {
                 // If a PlayerRack is selected, move it to the clicked tile
                 if (selectedPlayerRack != null)

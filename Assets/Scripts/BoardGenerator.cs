@@ -3,15 +3,15 @@ using UnityEngine.UI;
 
 public class BoardGenerator : MonoBehaviour
 {
-    public GameObject tilePrefab; // Assign a simple square prefab here
-    public LineRenderer linePrefab; // Assign a LineRenderer prefab for the grid lines
-    public Vector2 tileSize = new Vector2(1, 1); // Adjust based on your prefab size
-    public Transform boardParent; // Assign an empty GameObject as the parent for the board
-    public Transform PlayerRackParent; // Empty GameObject for the tile rack
+    public GameObject tilePrefab; // Used as the prefab for the tiles and the board squares
+    public LineRenderer linePrefab; // Used for lines between squared on board
+    public Vector2 tileSize = new Vector2(1, 1); // Used to adjust the tile sizes
+    public Transform boardParent; // Assign an empty GameObject as the parent for the component that make up the board
+    public Transform PlayerRackParent; // Expty GameObject to serve as a parent for the tiles on the player's rack
 
     public GameManager GameManager;
 
-    // Colors for special tiles
+    // Colors for special tile positions on the board
     public Color defaultColor = new Color(214, 197, 157);
     public Color doubleLetterColor = new Color(2, 146, 246);
     public Color tripleLetterColor = new Color(38, 85, 218);
@@ -42,10 +42,10 @@ public class BoardGenerator : MonoBehaviour
 
     // Scoreboard UI elements
     public GameObject scoreboardParent; // Parent object for the scoreboard
-    public Text scoreText; // Text to display player scores
-    public Text currentPlayerText; // Text to display current player's name
-    public Button menuButton; // Menu button in the scoreboard
-    public Canvas canvas; // Reference to Canvas for the UI
+    public Text scoreText;
+    public Text currentPlayerText;
+    public Button menuButton;
+    public Canvas canvas; // A canvas is required for the text and buttons
 
     void Start()
     {
@@ -89,10 +89,10 @@ public class BoardGenerator : MonoBehaviour
             Vector3 position = startPos + new Vector3(i * (tileSize.x + padding), 0, 0);
             GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity, PlayerRackParent);
 
-            // Assign a name to the tile (optional)
+            // Assign a unique name to the tile
             tile.name = $"PlayerRack_{i}";
 
-            // Random color or logic for tiles can be added here
+            // Modify properites for each tile as needed
             Renderer tileRenderer = tile.GetComponent<Renderer>();
 
             Color beigeColor = new Color(0.96f, 0.96f, 0.86f);

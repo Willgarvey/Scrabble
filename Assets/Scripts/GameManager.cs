@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject tilePrefab; // Wooden tile prefab (or your custom tile)
-    public GameObject playerRackPrefab; // PlayerRack prefab (the tile on the player rack)
+    public GameObject tilePrefab; // Wooden tile prefab
+    public GameObject playerRackPrefab;
     public Vector2 tileSize = new Vector2(1, 1); // Tile size in units
     public int boardSize = 15; // Scrabble board size (15x15)
     public Transform boardParent;     // The parent of the board (used to calculate position)
 
-    private GameObject selectedPlayerRack = null; // Currently selected player rack (yellow one)
+    private GameObject selectedPlayerRack = null;
 
     void Start()
     {
-        // Instantiate a player rack for demonstration purposes (You may already have this in your UI)
         selectedPlayerRack = Instantiate(playerRackPrefab);
         Renderer rackRenderer = selectedPlayerRack.GetComponent<Renderer>();
         if (rackRenderer != null)
@@ -45,7 +44,7 @@ public class GameManager : MonoBehaviour
         float posX = (col * tileSize.x) - offsetX;
         float posZ = (row * tileSize.y) - offsetZ;
 
-        return new Vector3(posX, 0, posZ); // Assuming you want the tiles on the XZ plane (y=0 for flat tiles)
+        return new Vector3(posX, 0, posZ);
     }
 
     // Method to place test tiles randomly on the board
@@ -128,7 +127,6 @@ public class GameManager : MonoBehaviour
                     }
                 }
 
-                // Select the new PlayerRack (or re-select the same one to toggle selection)
                 if (selectedPlayerRack != clickedObject)
                 {
                     selectedPlayerRack = clickedObject;
@@ -181,7 +179,6 @@ public class GameManager : MonoBehaviour
             // If nothing is hit and a PlayerRack is selected
             if (selectedPlayerRack != null)
             {
-                // Logic to return the PlayerRack to its rack
                 ReturnPlayerRackToRack(selectedPlayerRack);
 
                 // Revert the PlayerRack color to beige

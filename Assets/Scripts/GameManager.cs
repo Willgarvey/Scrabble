@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public Vector2 tileSize = new Vector2(1, 1); // Tile size in units
     public int boardSize = 15; // Scrabble board size (15x15)
     public Transform boardParent;     // The parent of the board (used to calculate position)
-
+    public Texture2D[] tileTextures; // Assign the letter and point to each tile top
     private GameObject selectedPlayerRack = null;
 
     void Start()
@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
         if (rackRenderer != null)
         {
             rackRenderer.material.color = Color.yellow;  // Set initial color to yellow
+            int randInt = Random.Range(0, 3);
+            ApplyTopFaceTexture(rackRenderer.material, tileTextures[randInt]);
         }
 
         // Place some random test tiles
@@ -76,6 +78,8 @@ public class GameManager : MonoBehaviour
             if (tileRenderer != null)
             {
                 tileRenderer.material.color = beigeColor;
+                int randInt = Random.Range(0, 3);
+                ApplyTopFaceTexture(tileRenderer.material, tileTextures[randInt]);
             }
         }
     }
@@ -223,6 +227,22 @@ public class GameManager : MonoBehaviour
         }
 
         return Vector3.zero; // Default fallback position
+    }
+
+    void ApplyTopFaceTexture(Material material, Texture2D topFaceTexture)
+    {
+        if (topFaceTexture == null)
+        {
+            Debug.LogError("Passed texture is null!");
+            return;
+        }
+
+        // Set the texture on the material's main property
+        material.SetTexture("_MainTex", topFaceTexture);
+
+        // Flip the texture 180 degrees using tiling and offset
+        material.SetTextureScale("_MainTex", new Vector2(-1, -1)); // Negative scale flips the texture
+        material.SetTextureOffset("_MainTex", new Vector2(1, 1));  // Adjust offset to align properly
     }
 
 

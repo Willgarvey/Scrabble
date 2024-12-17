@@ -47,6 +47,8 @@ public class BoardGenerator : MonoBehaviour
     public Button menuButton;
     public Canvas canvas; // A canvas is required for the text and buttons
     public Texture2D[] boardTextures; // Assign special score board squares here
+    public Texture2D[] tileTextures; // Assign the letter and point to each tile top
+
     void Start()
     {
         GenerateBoard();
@@ -100,6 +102,8 @@ public class BoardGenerator : MonoBehaviour
 
             Color beigeColor = new Color(0.96f, 0.96f, 0.86f);
             tileRenderer.material.color = beigeColor;
+            int randInt = Random.Range(0, 3);
+            ApplyTopFaceTexture(tileRenderer.material, tileTextures[randInt]);
         }
     }
 

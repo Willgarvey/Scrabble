@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         if (rackRenderer != null)
         {
             rackRenderer.material.color = Color.yellow;  // Set initial color to yellow
-            int randInt = Random.Range(0, 3);
+            int randInt = Random.Range(0, 4);
             ApplyTopFaceTexture(rackRenderer.material, tileTextures[randInt]);
         }
 
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
             if (tileRenderer != null)
             {
                 tileRenderer.material.color = beigeColor;
-                int randInt = Random.Range(0, 3);
+                int randInt = Random.Range(0, 4);
                 ApplyTopFaceTexture(tileRenderer.material, tileTextures[randInt]);
             }
         }

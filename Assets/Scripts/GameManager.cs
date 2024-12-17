@@ -58,8 +58,14 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < numberOfTiles; i++)
         {
             // Randomly pick row and column indexes
-            int row = Random.Range(0, boardSize); // Random row from 0 to boardSize-1
-            int col = Random.Range(0, boardSize); // Random column from 0 to boardSize-1
+            int row = Random.Range(1, boardSize);
+            int col = Random.Range(1, boardSize);
+
+            if (i == 0)
+            {
+                row = 7;
+                col = 7;
+            }
 
             // Get the world position for the tile
             Vector3 tilePosition = GetTilePosition(row, col);

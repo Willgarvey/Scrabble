@@ -46,7 +46,7 @@ public class BoardGenerator : MonoBehaviour
     public Text currentPlayerText;
     public Button menuButton;
     public Canvas canvas; // A canvas is required for the text and buttons
-
+    public Texture2D[] boardTextures; // Assign special score board squares here
     void Start()
     {
         GenerateBoard();
@@ -70,6 +70,9 @@ public class BoardGenerator : MonoBehaviour
                 tile.name = $"Position_{row}_{col}";
                 Renderer tileRenderer = tile.GetComponent<Renderer>();
                 tileRenderer.material.color = GetTileColor(specialTiles[row, col]);
+
+                Texture2D chosenTexture = GetTextureForTile(specialTiles[row, col]);
+                ApplyTopFaceTexture(tileRenderer.material, chosenTexture);
             }
         }
 
@@ -111,5 +114,34 @@ public class BoardGenerator : MonoBehaviour
             case 5: return centerStarColor;
             default: return defaultColor;
         }
+    }
+
+    Texture2D GetTextureForTile(int tileType)
+    {
+        switch (tileType)
+        {
+            case 1: return boardTextures[1];
+            case 2: return boardTextures[2];
+            case 3: return boardTextures[3];
+            case 4: return boardTextures[4];
+            case 5: return boardTextures[0];
+            default: return null;
+        }
+    }
+
+    void ApplyTopFaceTexture(Material material, Texture2D topFaceTexture)
+    {
+        if (topFaceTexture == null)
+        {
+            Debug.LogError("Passed texture is null!");
+            return;
+        }
+
+        // Set the texture on the material's main property
+        material.SetTexture("_MainTex", topFaceTexture);
+
+        // Flip the texture 180 degrees using tiling and offset
+        material.SetTextureScale("_MainTex", new Vector2(-1, -1)); // Negative scale flips the texture
+        material.SetTextureOffset("_MainTex", new Vector2(1, 1));  // Adjust offset to align properly
     }
 }
